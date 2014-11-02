@@ -1,5 +1,4 @@
-<!--fork	gh-pages	needs	to	commit	once	to	
-trigger	webpage-->
+
 int[][] slot;
 boolean[][] flagSlot; // use for flag
 int bombCount; // 共有幾顆炸彈
