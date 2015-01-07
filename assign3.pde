@@ -1,4 +1,3 @@
-
 int[][] slot;
 boolean[][] flagSlot; // use for flag
 int bombCount; // 共有幾顆炸彈
@@ -79,12 +78,12 @@ void draw(){
     case GAME_WIN:
           textSize(18);
           fill(0);
-          text("YOU WIN !!",width/3,30);
+          text(" Y O U  W I N ! !",width/3,30);
           break;
     case GAME_LOSE:
           textSize(18);
           fill(0);
-          text("YOU LOSE !!",width/3,30);
+          text("Y O U  L O S E  ! !",width/3,30);
           break;
   }
 }
