@@ -67,24 +67,32 @@ void draw(){
           break;
     case GAME_RUN:
           //---------------- put you code here ----
-
+           if(clickCount<16){
+             if(clickCount == (totalSlots -bombCount)){
+             gameState = GAME_WIN;}
+          } 
+            /*if(all the bombsafe is clicked){
+           // gameState = GAME_WIN}*/
           // -----------------------------------
           break;
     case GAME_WIN:
           textSize(18);
           fill(0);
-          text("YOU WIN !!",width/3,30);
+          text("YOU WIN!!",width/3,30);
           break;
     case GAME_LOSE:
           textSize(18);
           fill(0);
-          text("YOU LOSE !!",width/3,30);
+          text("YOU LOSE!!",width/3,30);
           break;
   }
 }
 
 int countNeighborBombs(int col,int row){
   // -------------- Requirement B ---------
+  
+  
+  
   return 0;
 }
 
@@ -97,7 +105,18 @@ void setBombs(){
   }
   // -------------- put your code here ---------
   // randomly set bombs
-
+     int setbombCount = bombCount;
+     while(setbombCount >0){
+     int col = (int) random(4);
+     int row = (int) random(4);
+     if ( slot[col][row] != SLOT_BOMB){ 
+       slot[col][row] = SLOT_BOMB;
+       setbombCount--;
+       
+     }
+     
+     }  
+     
   // ---------------------------------------
 }
 
@@ -174,11 +193,30 @@ void mousePressed(){
        mouseY >= iy && mouseY <= iy+sideLength){
     
     // --------------- put you code here -------     
+     for (int col=0; col <4 ; col++){
+    for (int row=0; row < 4; row++){
+     
+    if(mouseX > ix +col*SLOT_SIZE && mouseX < ix +(col+1) * SLOT_SIZE
+      && mouseY > iy +row*SLOT_SIZE && mouseY <iy +(row+1)*SLOT_SIZE) {
+      if(mouseButton == LEFT){
+      if( slot[col][row] == SLOT_OFF){
+       showSlot(col,row,SLOT_SAFE);
+       slot[col][row] = SLOT_SAFE;
+       clickCount++;
+     }else if(slot[col][row] ==SLOT_BOMB){
+     showSlot(col,row,SLOT_BOMB);
+     slot[col][row] =SLOT_BOMB;
+     gameState = GAME_LOSE;}
+    }
+   }
+  }
+ } 
+ }
+      }
 
+      
     // -------------------------
     
-  }
-}
 
 // press enter to start
 void keyPressed(){
